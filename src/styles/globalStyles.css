@@ -68,7 +68,8 @@ body {
 }
 
 .winner{
-  color: gold;
+  color: rgb(214, 182, 0);
+  font-weight: bold;
   box-shadow: black;
 }
 
