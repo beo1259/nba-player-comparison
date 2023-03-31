@@ -16,37 +16,40 @@ const HomeScreen = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!player1Name || !player2Name) return;
-
+  
     try {
       const [searchResult1, searchResult2] = await Promise.all([
         searchPlayer(player1Name),
         searchPlayer(player2Name),
       ]);
-
+  
+      // Add console logs to inspect search results
+      console.log("Search Result 1:", searchResult1);
+      console.log("Search Result 2:", searchResult2);
+  
       if (!searchResult1.length || !searchResult2.length) {
-        throw new Error('One or both players not found.');
+        throw new Error("One or both players not found.");
       }
-
+  
       const [playerStats1, playerStats2] = await Promise.all([
         getPlayerStats(searchResult1[0].id),
         getPlayerStats(searchResult2[0].id),
       ]);
-
-      // Debugging statements
-      console.log('Player 1:', searchResult1[0]);
-      console.log('Player 1 Stats:', playerStats1);
-      console.log('Player 2:', searchResult2[0]);
-      console.log('Player 2 Stats:', playerStats2);
-
+  
+      // Add console logs to inspect player stats
+      console.log("Player 1 Stats:", playerStats1);
+      console.log("Player 2 Stats:", playerStats2);
+  
       setPlayer1(searchResult1[0]);
       setStats1(playerStats1);
       setPlayer2(searchResult2[0]);
       setStats2(playerStats2);
     } catch (error) {
       console.error(error);
-      alert('Error: ' + error.message);
+      alert("Error: " + error.message);
     }
   };
+  
 
   const compareStats = (stat1, stat2) => {
     if (stat1 > stat2) {
