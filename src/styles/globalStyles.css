@@ -1,0 +1,256 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap');
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  background-color: #202121;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.title {
+  font-size: 20px;
+  font-weight: bold;
+  color: #c53030;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.inputTitle {
+  font-size: 17px;
+  font-weight: bold;
+  color: #c53030;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.input {
+  width: 100%;
+  height: 40px;
+  border: 3px solid #17408b;
+  border-radius: 5px;
+  padding: 0 10px;
+  margin-bottom: 10px;
+  margin-top: 5px;
+  font-family: 'Montserrat', sans-serif;
+  background-color: white;
+}
+
+
+.button {
+  background-color: #e83a3a;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  font-size: 18px;
+  cursor: pointer;
+  margin-bottom: 30px;
+  margin-top: 20px;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.button:hover {
+  background-color: #c53030;
+}
+
+.player-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 3px solid #17408b;
+  border-radius: 5px;
+  padding: 20px;
+  background-color: #f5f5f5;
+  margin-bottom: 20px;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.winner{
+  color: gold;
+  box-shadow: black;
+}
+
+.player-card img {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+
+.player-card h3 {
+  font-size: 18px;
+  margin-bottom: 10px;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.player-card h4 {
+  font-size: 16px;
+  margin-bottom: 5px;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.stats-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.stats {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 45%;
+  border: 1px solid #17408b;
+  border-radius: 5px;
+  padding: 20px;
+  background-color: #e0e6ee;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.stats h5 {
+  font-size: 14px;
+  margin-bottom: 5px;
+  font-weight: bold;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.stats p {
+  font-size: 12px;
+  margin-bottom: 5px;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.player-cards {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.vs {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  font-weight: bold;
+  color: #e83a3a;
+  margin: 0 40px;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.comparison {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.stats-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.stat-comparison {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 0.5rem;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.stat-comparison p {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-align: center;
+  width: 50%;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.stat-comparison .stat-name {
+  font-size: 1.1rem;
+  font-weight: normal;
+  text-align: center;
+  width: 50%;
+  font-family: 'Montserrat', sans-serif;
+  color: white;
+}
+
+.player-name{
+  font-size: 15px;
+  font-weight: bold;
+  color: #17408B;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.player-team{
+  font-size: 15px;
+  font-weight: normal;
+  color: #E83A3A;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.higher {
+  color: green;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.lower {
+  color: red;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.stats-value {
+  display: inline-block;
+  width: 100px;
+  text-align: center;
+  font-family: 'Montserrat', sans-serif;
+  
+
+}
+
+.stats-value.higher {
+  color: green;
+  margin-right: 5px;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.stats-value.lower {
+  color: red;
+  margin-left: 5px;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.stat-comparison .stat-value {
+  display: inline-block;
+  width: 100px;
+  text-align: center;
+  font-size: 1.2rem;
+  font-family: 'Montserrat', sans-serif;
+  color: white;
+}
+
+.stat-comparison .stat-value.higher {
+  color: green;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.stat-comparison .stat-value.lower {
+  color: red;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.stat-comparison .versus {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-right: 5px;
+  margin-left: 5px;
+  font-family: 'Montserrat', sans-serif;
+}
