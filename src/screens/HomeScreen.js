@@ -11,6 +11,7 @@ const HomeScreen = () => {
   const [stats2, setStats2] = useState(null);
   const [greenStatsCount, setGreenStatsCount] = useState([0, 0]);
   const [animationClass, setAnimationClass] = useState('fade-in');
+  const [errorMessage, setErrorMessage] = useState('');
 
   const resetAnimation = () => {
     setAnimationClass('fade-out');
@@ -19,6 +20,10 @@ const HomeScreen = () => {
     }, 4000);
   };  
 
+  const renderErrorMessage = () => {
+    if (!errorMessage) return null;
+    return <div className="error-message">{errorMessage}</div>;
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -54,10 +59,10 @@ const HomeScreen = () => {
       setPlayer2(searchResult2[0]);
       setStats2(playerStats2);
 
-      
+      setErrorMessage('');
     } catch (error) {
       console.error(error);
-      alert("Error: " + error.message);
+      setErrorMessage(error.message);
     }
   };
   
@@ -215,8 +220,10 @@ return (
           Compare
         </button>
       </div>
+      {renderErrorMessage()}
     </form>
     {renderComparison()}
+    <div className="note">Note: Both regular season games and playoff games are counted</div>
   </div>
 );
   }

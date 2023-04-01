@@ -10,6 +10,7 @@ export const searchPlayer = async (query) => {
       },
     });
     return response.data.data;
+    console.log(response.data.data);
   } catch (error) {
     console.error(error);
   }
@@ -42,6 +43,7 @@ export const getPlayerStats = async (playerId) => {
     let totalPages = 1;
 
     while (page <= totalPages) {
+      uniqueGames.clear();
       const response = await axios.get(`${API_BASE_URL}/stats`, {
         params: {
           player_ids: [playerId],
@@ -53,12 +55,13 @@ export const getPlayerStats = async (playerId) => {
       const stats = response.data.data;
       for (let i = 0; i < stats.length; i++) {
         const stat = stats[i];
-        
+        //console.log('season_type:', stat.season_type, 'min:', stat.min); // add this line to output the season_type and min
+
         const gameId = `${stat.game.id}-${stat.team.id}`;
-        if (stat.min !== '0:00' && stat.season_type !== 'Pre Season' && !uniqueGames.has(gameId)) {
+        if (stat.min !== null && stat.min !== '0:00' && stat.season_type !== 'Pre Season' && !uniqueGames.has(gameId)) {
+          console.log(summedStats.pts)
           uniqueGames.add(gameId);
-          summedStats.games_played++;
-          console.log(stat.games_played);
+          summedStats.games_played += 1;
           summedStats.pts += stat.pts;
           summedStats.reb += stat.reb;
           summedStats.dreb += stat.dreb;
