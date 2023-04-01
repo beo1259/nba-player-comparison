@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { searchPlayer, getPlayerStats } from '../utils/api';
-import PlayerCard from '../components/PlayerCard';
-import crownImg from './crown.png'
+import crownImg from './crown.png';
 
 const HomeScreen = () => {
   const [player1Name, setPlayer1Name] = useState('');
@@ -11,12 +10,22 @@ const HomeScreen = () => {
   const [stats1, setStats1] = useState(null);
   const [stats2, setStats2] = useState(null);
   const [greenStatsCount, setGreenStatsCount] = useState([0, 0]);
+  const [animationClass, setAnimationClass] = useState('fade-in');
+
+  const resetAnimation = () => {
+    setAnimationClass('fade-out');
+    setTimeout(() => {
+      setAnimationClass('fade-in');
+    }, 4000);
+  };  
 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!player1Name || !player2Name) return;
-  
+    
+    resetAnimation();
+
     try {
       const [searchResult1, searchResult2] = await Promise.all([
         searchPlayer(player1Name),
@@ -44,6 +53,8 @@ const HomeScreen = () => {
       setStats1(playerStats1);
       setPlayer2(searchResult2[0]);
       setStats2(playerStats2);
+
+      
     } catch (error) {
       console.error(error);
       alert("Error: " + error.message);
@@ -97,57 +108,80 @@ const HomeScreen = () => {
         ? 1
         : -1;
   
-    return (
-      <div className="comparison">
-        <div className="player-cards">
-          <div className="player-card">
-            {winnerIndex === 0 && <div className="winner">Winner!</div>}
-            <div className="player-info">
-              <div className="player-name">{player1.first_name + ' ' + player1.last_name} {stats1.TRB > stats2.TRB && <img src={crownImg} alt="crown" />}</div>
-              <div className="player-team">{player1.team.full_name}</div>
-            </div>
-          </div>
-          <div className="vs">VS</div>
-          <div className="player-card">
-            {winnerIndex === 1 && <div className="winner">Winner!</div>}
-            <div className="player-info">
-              <div className="player-name">{player2.first_name + ' ' + player2.last_name} {stats2.TRB > stats1.TRB && <img src={crownImg} alt="crown" />}</div>
-              <div className="player-team">{player2.team.full_name}</div>
-            </div>
-          </div>
-        </div>
-        <div className="stats-container">
-          {statNames.map((stat) => {
-            const [result1, result2] = compareStats(stats1[stat], stats2[stat]);
-            return (
-              <div key={stat} className="stat-comparison">
-                <div className="stat-name">{stat}</div>
-                <div className="stats-value">
-                  <div
-                    className={`stat-value ${
-                      result1 === 1 ? (stat === 'TO' ? 'lower' : 'higher') : result1 === -1 ? (stat === 'TO' ? 'higher' : 'lower') : ''
-                    }`}
-                  >
-                    {stats1[stat]}
+        return (
+          <div className={`comparison ${animationClass}`}>
+            <div className="player-cards">
+              <div className={`player-card ${animationClass}`}>
+                {winnerIndex === 0 && <div className={`winner ${animationClass}`}>Winner!</div>}
+                <div className="player-info">
+                  <div className="player-name">
+                    {player1.first_name + ' ' + player1.last_name} {stats1.TRB > stats2.TRB && <img src={crownImg} alt="crown" />}
                   </div>
+                  <div className="player-team">{player1.team.full_name}</div>
                 </div>
+                </div>
+                <div className="vs-container">
                 <div className="vs">VS</div>
-                <div className="stats-value">
-                  <div
-                    className={`stat-value ${
-                      result2 === 1 ? (stat === 'TO' ? 'lower' : 'higher') : result2 === -1 ? (stat === 'TO' ? 'higher' : 'lower') : ''
-                    }`}
-                  >
-                    {stats2[stat]}
+                </div>
+                <div className={`player-card ${animationClass}`}>
+                  {winnerIndex === 1 && <div className={`winner ${animationClass}`}>Winner!</div>}
+                <div className="player-info">
+                  <div className="player-name">
+                    {player2.first_name + ' ' + player2.last_name} {stats2.TRB > stats1.TRB && <img src={crownImg} alt="crown" />}
                   </div>
+                  <div className="player-team">{player2.team.full_name}</div>
+                </div>
                 </div>
               </div>
+              <div className={`stats-container ${animationClass}`}> 
+            {statNames.map((stat) => {
+              const [result1, result2] = compareStats(stats1[stat], stats2[stat]);
+              return (
+                <div key={stat} className="stat-comparison">
+                  <div className="stat-name">{stat}</div>
+                  <div className="stats-value">
+                    <div
+                      className={`stat-value ${
+                        result1 === 1
+                          ? stat === 'TO'
+                            ? 'lower'
+                            : 'higher'
+                          : result1 === -1
+                          ? stat === 'TO'
+                            ? 'higher'
+                            : 'lower'
+                          : ''
+                      }`}
+                    >
+                      {stats1[stat]}
+                    </div>
+                  </div>
+                  <div className="vs">VS</div>
+                  <div className="stats-value">
+                    <div
+                      className={`stat-value ${
+                        result2 === 1
+                          ? stat === 'TO'
+                            ? 'lower'
+                            : 'higher'
+                          : result2 === -1
+                          ? stat === 'TO'
+                            ? 'higher'
+                            : 'lower'
+                          : ''
+                      }`}
+                    >
+                      {stats2[stat]}
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+            </div>
+            </div>
             );
-          })}
-        </div>
-      </div>
-    );
-  };
+            };
+
   
 
 return (

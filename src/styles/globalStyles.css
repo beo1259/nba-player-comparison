@@ -14,32 +14,32 @@ body {
 .title {
   font-size: 20px;
   font-weight: bold;
-  color: #c53030;
+  color: #d4af37;
   font-family: 'Montserrat', sans-serif;
 }
 
 .inputTitle {
   font-size: 17px;
   font-weight: bold;
-  color: #c53030;
+  color: #d4af37;
   font-family: 'Montserrat', sans-serif;
 }
 
 .input {
   width: 100%;
   height: 40px;
-  border: 3px solid #17408b;
+  border: 3px solid #7d5a1f;
   border-radius: 5px;
   padding: 0 10px;
   margin-bottom: 10px;
   margin-top: 5px;
   font-family: 'Montserrat', sans-serif;
-  background-color: white;
+  background-color: #202121;
+  color: white;
 }
 
-
 .button {
-  background-color: #e83a3a;
+  background-color: #d4af37;
   padding: 10px 20px;
   border: none;
   border-radius: 5px;
@@ -52,24 +52,66 @@ body {
 }
 
 .button:hover {
-  background-color: #c53030;
+  background-color: #b6951a;
 }
 
+.fade-in {
+  animation: fadeIn 1s ease-out forwards;
+}
+
+.fade-out {
+  animation: fadeOut 1s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+
+
 .player-card {
+  color: #202121;
+  box-shadow: 0 0 10px rgb(172, 146, 0);
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: 3px solid #17408b;
-  border-radius: 5px;
+  justify-content: space-between;
+  border: 3px solid rgb(172, 146, 0);
+  border-radius: 10px;
   padding: 20px;
-  background-color: #f5f5f5;
+  background-color: #202121 ;
   margin-bottom: 20px;
   font-family: 'Montserrat', sans-serif;
+  position: relative;
+  height: 50px;
+  width: 200px;
 }
 
-.winner{
+.player-card .winner {
   color: gold;
-  box-shadow: black;
+  text-shadow: 0 0 20px gold;
+  position: absolute;
+  top: -50px;
+  left: 51%;
+  transform: translateX(-50%);
+  font-size: 16px;
+  padding: 5px;
+  border-radius: 5px;
+  background-color: #202121;
 }
 
 .player-card img {
@@ -87,8 +129,8 @@ body {
 }
 
 .player-card h4 {
-  font-size: 16px;
-  margin-bottom: 5px;
+  font-size: 18px;
+  margin-bottom: 10px;
   font-family: 'Montserrat', sans-serif;
 }
 
@@ -135,7 +177,7 @@ body {
   font-size: 18px;
   font-weight: bold;
   color: #e83a3a;
-  margin: 0 40px;
+  margin: 0 25px;
   font-family: 'Montserrat', sans-serif;
 }
 
@@ -180,20 +222,23 @@ body {
   text-align: center;
   width: 50%;
   font-family: 'Montserrat', sans-serif;
-  color: white;
+  color: gold;
 }
 
 .player-name{
   font-size: 15px;
+  margin-top: 6px;
+  text-align: center;
   font-weight: bold;
-  color: #17408B;
+  color: #fff;
   font-family: 'Montserrat', sans-serif;
 }
 
 .player-team{
   font-size: 15px;
+  text-align: center;
   font-weight: normal;
-  color: #E83A3A;
+  color: #fff;
   font-family: 'Montserrat', sans-serif;
 }
 
@@ -212,8 +257,6 @@ body {
   width: 100px;
   text-align: center;
   font-family: 'Montserrat', sans-serif;
-  
-
 }
 
 .stats-value.higher {
@@ -253,4 +296,91 @@ body {
   margin-right: 5px;
   margin-left: 5px;
   font-family: 'Montserrat', sans-serif;
+}
+
+@keyframes moveIn {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.winner-icon-animation {
+  animation: moveIn 0.5s ease-out 1s forwards;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.player-card-animation,
+.stats-animation {
+  opacity: 0;
+  animation: fadeIn 0.5s ease-in 1s forwards;
+}
+
+
+input[type="text"]:focus,
+input[type="number"]:focus,
+textarea:focus {
+  outline: none;
+  border-color: #d4af37;
+  box-shadow: 0 0 10px #d4af37;
+  background-color: #202121;
+  color: white;
+}
+
+input[type="submit"]:focus,
+button:focus {
+  outline: none;
+  box-shadow: 0 0 5px #d4af37;
+}
+
+@media only screen and (max-width: 768px) {
+  .player-cards {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .player-card {
+    width: 100%;
+  }
+
+  .vs {
+    margin: 20px 0;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .container {
+    padding: 10px;
+  }
+
+  .player-card img {
+    width: 10px;
+    height: 10px;
+  }
+
+  .player-name {
+    font-size: 14px;
+  }
+
+  .player-team {
+    font-size: 12px;
+  }
+
+  .stat-name {
+    font-size: 14px;
+  }
+
+  .stat-value {
+    font-size: 14px;
+  }
 }
