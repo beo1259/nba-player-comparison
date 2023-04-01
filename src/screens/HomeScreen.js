@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { searchPlayer, getPlayerStats } from '../utils/api';
 import crownImg from './crown.png';
+import lbj from './lbj.png';
+import mj from './mj.png';
 
 const HomeScreen = () => {
   const [player1Name, setPlayer1Name] = useState('');
@@ -116,6 +118,7 @@ const HomeScreen = () => {
         return (
           <div className={`comparison ${animationClass}`}>
             <div className="player-cards">
+            <img className="left-image" src={mj} alt="Michael Jordan" />
               <div className={`player-card ${animationClass}`}>
                 {winnerIndex === 0 && <div className={`winner ${animationClass}`}>Winner!</div>}
                 <div className="player-info">
@@ -136,7 +139,9 @@ const HomeScreen = () => {
                   </div>
                   <div className="player-team">{player2.team.full_name}</div>
                 </div>
+                
                 </div>
+                <img className="right-image" src={lbj} alt="Lebron James" />
               </div>
               <div className={`stats-container ${animationClass}`}> 
             {statNames.map((stat) => {

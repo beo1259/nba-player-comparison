@@ -5,6 +5,34 @@ body {
   background-color: #202121;
 }
 
+.left-image {
+  filter: grayscale(100%);
+  opacity: 50%;
+  position: absolute;
+  height: 400px;
+}
+.right-image {
+  filter: grayscale(100%);
+  opacity: 50%;
+  position: absolute;
+  height: 450px;
+}
+
+.left-image {
+  left: -275px;
+  margin-top: 250px;
+}
+
+.right-image {
+  right: -375px;
+  margin-top: 275px;
+}
+
+.player-cards {
+  position: relative;
+}
+
+
 .container {
   max-width: 1200px;
   margin: 0 auto;
